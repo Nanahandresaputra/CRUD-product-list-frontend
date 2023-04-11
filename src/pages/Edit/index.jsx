@@ -20,12 +20,11 @@ const Edit = () => {
       setStatus(product.status);
     });
   }, [id]);
-  console.log(status);
 
   const productUpdate = (e) => {
     e.preventDefault();
     let product = { name, price, stock, status };
-    updateProduct(id, product);
+    updateProduct(id, product).then((res) => alert(`${res} press the refresh page button to update the display`));
     history.push("/");
   };
 

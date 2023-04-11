@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import "./index.scss";
 import { useEffect, useState } from "react";
 import { detailProduct } from "../../api/api";
+import formatRupiah from "../../utils/utils";
 
 const Detail = () => {
   const [detailId, setDetailId] = useState([]);
@@ -10,7 +11,6 @@ const Detail = () => {
   useEffect(() => {
     detailProduct(id).then((product) => setDetailId([product]));
   }, [id]);
-  console.log(detailId);
 
   return (
     <div className="main">
@@ -32,7 +32,7 @@ const Detail = () => {
               </tr>
               <tr>
                 <td>Price</td>
-                <td>{datId.price}</td>
+                <td>{formatRupiah(datId.price)}</td>
               </tr>
               <tr>
                 <td>Stock</td>

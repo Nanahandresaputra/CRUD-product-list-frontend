@@ -21,7 +21,7 @@ const Tambah = () => {
   const handleAdd = (e) => {
     e.preventDefault();
     let product = { name, price, stock, status };
-    addProduct(product);
+    addProduct(product).then((res) => alert(`${res.name} added sucessfully press the refresh page button to update the display`));
     history.push("/");
   };
   return (

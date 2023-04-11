@@ -14,16 +14,13 @@ const Home = () => {
       setSearch(res);
     });
   }, []);
-  // console.log(datar);
   const handleDelete = (id) => {
-    window.location.reload();
-    deleteProduct(id).then((res) => console.log(res));
+    deleteProduct(id).then((res) => alert(`${res} press the refresh page button to update the display`));
   };
 
   const handleSearch = (e) => {
     const getSearch = e.target.value;
     setQuery(getSearch);
-    // console.log(getSearch);
     if (getSearch.length > 0) {
       const searchData = datar.filter((item) => item.name.toLowerCase().includes(getSearch));
       setDatar(searchData);
