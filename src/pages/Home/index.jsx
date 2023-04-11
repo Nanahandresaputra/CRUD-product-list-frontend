@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./index.scss";
 import { useEffect, useState } from "react";
 import { deleteProduct, getProduct } from "../../api/api";
+import formatRupiah from "../../utils/utils";
 
 const Home = () => {
   const [datar, setDatar] = useState([]);
@@ -33,7 +34,7 @@ const Home = () => {
   return (
     <div className="main">
       <Link to="/tambah" className="btn btn-primary">
-        Tamah Produk
+        Tambah Produk
       </Link>
       <div className="search">
         <input type="text" placeholder="Masukan kata kunci..." value={query} onChange={(e) => handleSearch(e)} />
@@ -43,16 +44,16 @@ const Home = () => {
           <tr>
             <th>ID</th>
             <th>Name</th>
-            <th className="text-right">Price</th>
+            <th>Price</th>
             <th className="text-center">Action</th>
           </tr>
         </thead>
         <tbody>
           {datar.map((datas, i) => (
             <tr key={i}>
+              <td>{datas._id}</td>
               <td>{datas.name}</td>
-              <td>{datas.price}</td>
-              <td className="text-right">{datas.stock}</td>
+              <td>{formatRupiah(datas.price)}</td>
               <td className="text-center">
                 <Link to={`/detail/${datas._id}`} className="btn btn-sm btn-info">
                   Detail
@@ -74,6 +75,17 @@ const Home = () => {
           ))}
         </tbody>
       </table>
+      <div>
+        <button
+          to="/tambah"
+          className="btn btn-primary mt-25"
+          onClick={() => {
+            window.location.reload();
+          }}
+        >
+          Refresh page
+        </button>
+      </div>
     </div>
   );
 };
