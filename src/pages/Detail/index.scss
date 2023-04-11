@@ -42,3 +42,48 @@
   font-size: 12px;
   border-radius: 2px;
 }
+
+.mainDetail{
+  margin: auto 150px;
+  margin-top: 30px;
+  min-height: 500px;
+  box-shadow: 1px 1px 5px rgba($color: #000000, $alpha: .3);
+  border-radius: 5px;
+  padding: 30px;
+}
+.tableDetail {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+  margin-top: 20px;
+
+  th, td {
+    text-align: left;
+    padding: 14px;
+  }
+
+  tr:hover {
+    background-color: rgba($color: #576574, $alpha: .1);
+  }
+
+  th {
+    background-color: rgba($color: #222f3e, $alpha: 1);
+    color: #ddd;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .mainDetail{
+    margin: 30px 15px 30px;
+  }
+  
+}

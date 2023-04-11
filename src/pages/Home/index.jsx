@@ -33,9 +33,19 @@ const Home = () => {
       <Link to="/tambah" className="btn btn-primary">
         Tambah Produk
       </Link>
+      <button
+        to="/tambah"
+        className="btn btn-primary mt-25"
+        onClick={() => {
+          window.location.reload();
+        }}
+      >
+        Refresh page
+      </button>
       <div className="search">
         <input type="text" placeholder="Masukan kata kunci..." value={query} onChange={(e) => handleSearch(e)} />
       </div>
+
       <table className="table">
         <thead>
           <tr>
@@ -48,10 +58,10 @@ const Home = () => {
         <tbody>
           {datar.map((datas, i) => (
             <tr key={i}>
-              <td>{datas._id}</td>
-              <td>{datas.name}</td>
-              <td>{formatRupiah(datas.price)}</td>
-              <td className="text-center">
+              <td data-label="ID">{datas._id}</td>
+              <td data-label="Name">{datas.name}</td>
+              <td data-label="Price">{formatRupiah(datas.price)}</td>
+              <td data-label="Action" className="text-center">
                 <Link to={`/detail/${datas._id}`} className="btn btn-sm btn-info">
                   Detail
                 </Link>
@@ -72,17 +82,7 @@ const Home = () => {
           ))}
         </tbody>
       </table>
-      <div>
-        <button
-          to="/tambah"
-          className="btn btn-primary mt-25"
-          onClick={() => {
-            window.location.reload();
-          }}
-        >
-          Refresh page
-        </button>
-      </div>
+      <div></div>
     </div>
   );
 };

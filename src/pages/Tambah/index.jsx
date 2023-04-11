@@ -25,7 +25,7 @@ const Tambah = () => {
     history.push("/");
   };
   return (
-    <div className="main">
+    <div className="mainAdd">
       <div className="card">
         <h2>Tambah Produk</h2>
         <br />

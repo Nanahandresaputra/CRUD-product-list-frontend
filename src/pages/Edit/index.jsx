@@ -29,7 +29,7 @@ const Edit = () => {
   };
 
   return (
-    <div className="main">
+    <div className="mainAdd">
       <div className="card">
         <h2>Edit Produk</h2>
         <br />

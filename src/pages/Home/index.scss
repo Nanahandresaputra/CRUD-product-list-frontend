@@ -28,10 +28,6 @@
     color: #ddd;
   }
 
-  // tr:nth-child(even) {
-  //   background-color: rgba($color: #ee5253, $alpha: .3);
-  // }
-
   .text-right {
     text-align: right;
   }
@@ -63,3 +59,45 @@
 .mt-25 {
   margin-top: 25px;
 }
+
+@media screen and (max-width: 500px) {
+  .table{
+    border: none;
+  }
+  .table thead{
+    display: none;
+  }
+  .table, .table tbody, .table tr, .table td{
+    display:block;
+    width:100%;
+    font-size: small;
+  }
+  .table tr{
+    margin-top: 70px;
+    margin-bottom: 15px;
+  }
+  .table td{
+    text-align: center;
+    padding-left: 20%;
+    position: relative;
+  }
+  .table td::before{
+    content: attr(data-label);
+    position: absolute;
+    left:0;
+    width:50%;
+    padding-left: 15px;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  .main {
+    margin: 30px 15px 30px;
+  }
+  .search{
+    margin-top: 13px;
+  }
+
+}
+
+

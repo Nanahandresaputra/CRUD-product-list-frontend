@@ -13,12 +13,12 @@ const Detail = () => {
   }, [id]);
 
   return (
-    <div className="main">
+    <div className="mainDetail">
       <Link to="/" className="btn btn-primary">
         Kembali
       </Link>
 
-      <table className="table">
+      <table className="tableDetail">
         {detailId.map((datId, i) => (
           <tbody key={i}>
             <>
