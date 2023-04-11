@@ -1,27 +1,22 @@
 import { Link } from "react-router-dom";
 import "./index.scss";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { deleteProduct, getProduct } from "../../api/api";
 
 const Home = () => {
   const [datar, setDatar] = useState([]);
   const [search, setSearch] = useState([]);
   const [query, setQuery] = useState("");
   useEffect(() => {
-    const getData = async () => {
-      const res = await axios.get(process.env.REACT_APP_DATA);
-      setDatar(res.data);
-      setSearch(res.data);
-      // console.log(res);
-    };
-    getData();
+    getProduct().then((res) => {
+      setDatar(res);
+      setSearch(res);
+    });
   }, []);
-  const handleDelete = async (id) => {
+  // console.log(datar);
+  const handleDelete = (id) => {
     window.location.reload();
-    try {
-      const res = await axios.delete(process.env.REACT_APP_DATA + id);
-      console.log(res.data);
-    } catch (e) {}
+    deleteProduct(id).then((res) => console.log(res));
   };
 
   const handleSearch = (e) => {

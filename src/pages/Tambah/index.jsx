@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Input from "../../components/Input";
 import { useHistory } from "react-router-dom";
 import "./index.scss";
+import { addProduct, getProduct } from "../../api/api";
 const Tambah = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -10,23 +10,18 @@ const Tambah = () => {
   const [status, setStatus] = useState(false);
   const history = useHistory();
   useEffect(() => {
-    const addProduct = async () => {
-      const res = await axios.get(process.env.REACT_APP_DATA);
-      setName(res.data.name);
-      setPrice(res.data.price);
-      setStock(res.data.stock);
-      setStatus(res.data.status);
-    };
-    addProduct();
+    getProduct().then((product) => {
+      setName(product.name);
+      setPrice(product.price);
+      setStock(product.stock);
+      setStatus(product.status);
+    });
   }, []);
 
-  const handleAdd = async (e) => {
+  const handleAdd = (e) => {
     e.preventDefault();
-    try {
-      await axios.post(process.env.REACT_APP_DATA, { name, price, stock, status });
-    } catch (e) {
-      console.log(e);
-    }
+    let product = { name, price, stock, status };
+    addProduct(product);
     history.push("/");
   };
   return (

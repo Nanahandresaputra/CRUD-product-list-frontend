@@ -1,21 +1,16 @@
 import { Link, useParams } from "react-router-dom";
 import "./index.scss";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { detailProduct } from "../../api/api";
 
 const Detail = () => {
   const [detailId, setDetailId] = useState([]);
   const { id } = useParams();
 
-  const dataId = axios
-    .get(process.env.REACT_APP_DATA + id)
-    // .get(`http://localhost:8000/api/v2/product/${id}`)
-    .then((res) => res.data)
-    .catch((e) => console.log(e));
-
   useEffect(() => {
-    dataId.then((detId) => setDetailId([detId])).catch((e) => console.log(e));
-  }, [dataId]);
+    detailProduct(id).then((product) => setDetailId([product]));
+  }, [id]);
+  console.log(detailId);
 
   return (
     <div className="main">
@@ -24,8 +19,8 @@ const Detail = () => {
       </Link>
 
       <table className="table">
-        <tbody>
-          {detailId.map((datId, i) => (
+        {detailId.map((datId, i) => (
+          <tbody key={i}>
             <>
               <tr key={i}>
                 <td>ID</td>
@@ -43,25 +38,13 @@ const Detail = () => {
                 <td>Stock</td>
                 <td>{datId.stock}</td>
               </tr>
+              <tr>
+                <td>Status</td>
+                <td>{datId.status.toString()}</td>
+              </tr>
             </>
-          ))}
-          {/* <tr>
-            <td>ID</td>
-            <td>: asdasdasdasd</td>
-          </tr>
-          <tr>
-            <td>Name</td>
-            <td>: Laptop</td>
-          </tr>
-          <tr>
-            <td>Price</td>
-            <td>: Rp. 20.000.000</td>
-          </tr>
-          <tr>
-            <td>Stock</td>
-            <td>: 10</td>
-          </tr> */}
-        </tbody>
+          </tbody>
+        ))}
       </table>
     </div>
   );

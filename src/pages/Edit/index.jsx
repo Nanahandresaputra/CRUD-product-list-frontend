@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 
 import Input from "../../components/Input";
+import { detailProduct, updateProduct } from "../../api/api";
 
 const Edit = () => {
   const [name, setName] = useState("");
@@ -13,23 +14,19 @@ const Edit = () => {
   const history = useHistory();
 
   useEffect(() => {
-    const getUpdate = async () => {
-      const res = await axios.get(process.env.REACT_APP_DATA + id);
-      setName(res.data.name);
-      setPrice(res.data.price);
-      setStock(res.data.stock);
-      setStatus(res.data.status);
-    };
-    getUpdate();
+    detailProduct(id).then((product) => {
+      setName(product.name);
+      setPrice(product.price);
+      setStock(product.stock);
+      setStatus(product.status);
+    });
   }, [id]);
+  console.log(status);
 
-  const productUpdate = async (e) => {
+  const productUpdate = (e) => {
     e.preventDefault();
-    try {
-      await axios.put(process.env.REACT_APP_DATA + id, { name, price, stock, status });
-    } catch (e) {
-      console.log(e);
-    }
+    let product = { name, price, stock, status };
+    updateProduct(id, product);
     history.push("/");
   };
 
