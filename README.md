@@ -1,3 +1,7 @@
-# Template React JS dari Eduwork
+# List Product App
 
-gunakan template ini untuk mengerjakan tugas integrasi react x express dengan studi kasus CRUDS
+List product app merupakan aplikasi crud sederhana untuk menambah, mengupdate, bahkan menghapus product, dan melihat semua product dan detailnya.
+
+### Link Demo
+
+https://product-list-app.up.railway.app/
