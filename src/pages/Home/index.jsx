@@ -45,44 +45,46 @@ const Home = () => {
       <div className="search">
         <input type="text" placeholder="Masukan kata kunci..." value={query} onChange={(e) => handleSearch(e)} />
       </div>
-
-      <table className="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th className="text-center">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {datar.map((datas, i) => (
-            <tr key={i}>
-              <td data-label="ID">{datas._id}</td>
-              <td data-label="Name">{datas.name}</td>
-              <td data-label="Price">{formatRupiah(datas.price)}</td>
-              <td data-label="Action" className="text-center">
-                <Link to={`/detail/${datas._id}`} className="btn btn-sm btn-info">
-                  Detail
-                </Link>
-                <Link to={`/edit/${datas._id}`} className="btn btn-sm btn-warning">
-                  Edit
-                </Link>
-                <button
-                  type="submit"
-                  onClick={() => {
-                    handleDelete(datas._id);
-                  }}
-                  className="btn btn-sm btn-danger"
-                >
-                  Delete
-                </button>
-              </td>
+      {datar.length === 0 && query.length === 0 ? (
+        <h3 className="loading">Loading...</h3>
+      ) : (
+        <table className="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th className="text-center">Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <div></div>
+          </thead>
+          <tbody>
+            {datar.map((datas, i) => (
+              <tr key={i}>
+                <td data-label="ID">{datas._id}</td>
+                <td data-label="Name">{datas.name}</td>
+                <td data-label="Price">{formatRupiah(datas.price)}</td>
+                <td data-label="Action" className="text-center">
+                  <Link to={`/detail/${datas._id}`} className="btn btn-sm btn-info">
+                    Detail
+                  </Link>
+                  <Link to={`/edit/${datas._id}`} className="btn btn-sm btn-warning">
+                    Edit
+                  </Link>
+                  <button
+                    type="submit"
+                    onClick={() => {
+                      handleDelete(datas._id);
+                    }}
+                    className="btn btn-sm btn-danger"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
